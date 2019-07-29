@@ -4,8 +4,7 @@ import {
 
 @Component({
   selector: 'app-pantry',
-  templateUrl: './pantry.component.html',
-  styleUrls: ['./pantry.component.scss']
+  templateUrl: './pantry.component.html'
 })
 export class PantryComponent {
 
