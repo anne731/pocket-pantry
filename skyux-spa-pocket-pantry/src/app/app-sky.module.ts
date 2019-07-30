@@ -19,13 +19,63 @@ import {
   SkyNavbarModule
 } from '@skyux/navbar';
 
+import {
+  SkyListToolbarModule
+} from '@skyux/list-builder';
+
+import {
+  SkyListModule
+} from '@skyux/list-builder';
+
+import {
+  SkyDropdownModule
+} from '@skyux/popovers';
+
+import {
+  SkyListFiltersModule
+} from '@skyux/list-builder';
+
+import {
+  SkyIconModule
+} from '@skyux/indicators';
+
+import {
+  SkyRadioModule
+} from '@skyux/forms';
+
+import {
+  SkyGridModule
+} from '@skyux/grids';
+
+import {
+  SkyFilterModule
+} from '@skyux/lists';
+
+import {
+  SkyListViewGridModule
+} from '@skyux/list-builder-view-grids';
+
+import {
+  SkyListViewChecklistModule
+} from '@skyux/list-builder-view-checklist';
+
 @NgModule({
   exports: [
     SkyAvatarModule,
     SkyAlertModule,
     SkyKeyInfoModule,
     SkyFluidGridModule,
-    SkyNavbarModule
+    SkyNavbarModule,
+    SkyListToolbarModule,
+    SkyListModule,
+    SkyDropdownModule,
+    SkyListFiltersModule,
+    SkyIconModule,
+    SkyRadioModule,
+    SkyGridModule,
+    SkyFilterModule,
+    SkyListViewGridModule,
+    SkyListViewChecklistModule
   ]
 })
 export class AppSkyModule { }
