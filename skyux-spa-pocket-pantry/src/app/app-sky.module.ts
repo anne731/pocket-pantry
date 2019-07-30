@@ -63,6 +63,18 @@ import {
   SkyAppLinkModule
 } from '@skyux/router';
 
+import {
+  SkyActionButtonModule
+} from '@skyux/layout'
+
+import {
+  SkyModalModule
+} from '@skyux/modals'
+
+import {
+  SkyDatepickerModule
+} from '@skyux/datetime'
+
 @NgModule({
   exports: [
     SkyAvatarModule,
@@ -80,7 +92,10 @@ import {
     SkyFilterModule,
     SkyListViewGridModule,
     SkyListViewChecklistModule,
-    SkyAppLinkModule
+    SkyAppLinkModule,
+    SkyActionButtonModule,
+    SkyModalModule,
+    SkyDatepickerModule
   ]
 })
 export class AppSkyModule { }

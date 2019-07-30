@@ -1,0 +1,92 @@
+<sky-modal>
+    <sky-modal-header>
+        {{title}}
+    </sky-modal-header>
+    <sky-modal-content>
+        <div
+        id="docs-modal-content"
+        >
+        Please enter information about your food item
+        </div>
+        <br/>
+        <div>
+            <label>
+            Food Item
+            </label>
+            <input #foodItem
+                type="text"
+                class="sky-form-control" 
+                placeholder="Ex: Tomato"
+            >
+        </div>
+        <br/>
+        <div>
+            <label>
+            Date Purchased
+            </label>
+            <sky-datepicker>
+            <input
+                #datePurchased
+                skyDatepickerInput
+                [maxDate]="maxDate"
+                [minDate]="minDate"
+                [(ngModel)]="selectedDate"
+                #date="ngModel"
+                placeholder="Ex: 08/31/2019"
+            />
+            </sky-datepicker>
+        </div>
+        <br/>
+        <div>
+            <label>
+            Expiration Date (optional)
+            </label>
+            <sky-datepicker>
+            <input
+                #expirationDate
+                skyDatepickerInput
+                [maxDate]="maxDate2"
+                [minDate]="minDate2"
+                [(ngModel)]="selectedDate2"
+                #date="ngModel"
+                placeholder="Ex: 08/31/2019"
+            />
+            </sky-datepicker>
+        </div>
+        <br/>
+        <div>
+            <label>
+            Category
+            </label>
+                <br>
+                <sky-dropdown>
+                <sky-dropdown-button>
+                    {{dropdownName}}
+                </sky-dropdown-button>
+                <sky-dropdown-menu>
+                    <sky-dropdown-item *ngFor="let item of items">
+                    <button
+                        type="button"
+                        (click)="categoryClicked(item.name)"
+                    >
+                        {{item.name}}
+                    </button>
+                    </sky-dropdown-item>
+                </sky-dropdown-menu>
+                </sky-dropdown>
+        </div>
+        <!-- <p>
+        <sky-alert *ngIf="context.eventMessage">
+            {{context.eventMessage}}
+        </sky-alert>
+        </p> -->
+    </sky-modal-content>
+    <sky-modal-footer>
+        <button
+        class="sky-btn sky-btn-primary"
+        type="button"
+        (click)="instance.save([foodItem.value, datePurchased.value, expirationDate.value, dropdownName])">
+        Save
+        </button>
+    </sky-modal-footer>
+</sky-modal>
