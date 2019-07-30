@@ -14,8 +14,16 @@ export class AppNavComponent {
       path: '/'
     },
     {
-      titleKey: 'app_nav_about',
-      path: '/about'
+      titleKey: 'Login',
+      path: '/login'
+    },{
+      titleKey: 'Pantry',
+      path: '/pantry-component'
+    },{
+      titleKey: 'Fridge',
+      path: '/fridge'
     }
+
+  
   ];
 }

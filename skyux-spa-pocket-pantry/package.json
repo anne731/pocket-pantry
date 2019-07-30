@@ -45,6 +45,7 @@
     "@skyux/navbar": "3.0.1",
     "@skyux/omnibar-interop": "3.1.0",
     "@skyux/router": "3.1.1",
+    "@skyux/tabs": "3.1.0",
     "@skyux/theme": "3.7.0",
     "rxjs": "6.5.2",
     "rxjs-compat": "6.5.2",
