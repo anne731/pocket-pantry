@@ -2,7 +2,7 @@ import {
   Component
 } from '@angular/core';
 
-//import { DatePipe } from '@angular/common';
+// import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'my-home',
@@ -10,6 +10,5 @@ import {
 })
 
 export class HomeComponent {
-
 
 }
