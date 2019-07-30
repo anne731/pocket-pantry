@@ -10,18 +10,36 @@
       index="0"
     >
       <ng-template>
-        <sky-dropdown
+        <!-- <sky-dropdown
           buttonStyle="primary"
         >
           <sky-dropdown-button>
             <sky-icon icon="plus-circle"></sky-icon>
             Add
           </sky-dropdown-button>
-        </sky-dropdown>
+        </sky-dropdown> -->
+        <button type="button" class="sky-btn sky-btn-primary"
+        (click)="onAddButtonClicked()">
+            <sky-icon icon="plus-circle"></sky-icon>
+            Add
+        </button>
       </ng-template>
     </sky-list-toolbar-item>
-
-    <sky-list-filter-button>
+    <sky-list-toolbar-item
+      id="scan-item"
+      location="left"
+      index="1"
+    >
+      <ng-template>
+          <button type="button" class="sky-btn sky-btn-secondary"
+          (click)="onScanButtonClicked()">
+              <sky-icon icon="plus-circle"></sky-icon>
+              Scan Item
+          </button>
+      </ng-template>
+    </sky-list-toolbar-item>
+    <sky-list-filter-button
+    >
       <sky-filter-button
         [showButtonText]="true"
         (filterButtonClick)="onFilterButtonClicked()"
@@ -35,7 +53,7 @@
     </sky-list-filter-summary>
 
     <sky-list-toolbar-sort
-      label="Fruit name (A - Z)"
+      label="Item Name (A - Z)"
       field="column2"
       [descending]="false"
       type="string"
@@ -43,7 +61,7 @@
     </sky-list-toolbar-sort>
 
     <sky-list-toolbar-sort
-      label="Fruit name (Z - A)"
+      label="Item Name (Z - A)"
       field="column2"
       [descending]="true"
       type="string"
@@ -97,15 +115,30 @@
   <sky-list-view-grid fit="scroll" #grid>
     <sky-grid-column
       field="column1"
-      heading="Column1"
-      [isSortable]="false"
+      heading="Food Item"
+      [isSortable]="true"
     >
     </sky-grid-column>
     <sky-grid-column
       field="column2"
-      heading="Column2"
+      heading="Date Purchased"
+      [isSortable]="true"
     >
     </sky-grid-column>
+    <sky-grid-column
+      field="column3"
+      heading="Expiration Date"
+      [isSortable]="true"
+    >
+    </sky-grid-column>
+    <sky-grid-column
+      field="column4"
+      heading="Food Type"
+      [isSortable]="true"
+    > 
+    </sky-grid-column>
+    
   </sky-list-view-grid>
+  <!-- <sky-list-paging pageSize="10"></sky-list-paging> -->
 </sky-list>
 </div>
