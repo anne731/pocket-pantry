@@ -21,7 +21,7 @@ export class AppNavComponent {
       path: '/pantry-component'
     },{
       titleKey: 'Fridge',
-      path: '/fridge'
+      path: '/fridge-component'
     }
 
   
