@@ -59,6 +59,10 @@ import {
   SkyListViewChecklistModule
 } from '@skyux/list-builder-view-checklist';
 
+import {
+  SkyAppLinkModule
+} from '@skyux/router';
+
 @NgModule({
   exports: [
     SkyAvatarModule,
@@ -75,7 +79,8 @@ import {
     SkyGridModule,
     SkyFilterModule,
     SkyListViewGridModule,
-    SkyListViewChecklistModule
+    SkyListViewChecklistModule,
+    SkyAppLinkModule
   ]
 })
 export class AppSkyModule { }

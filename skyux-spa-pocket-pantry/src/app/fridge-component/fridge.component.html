@@ -1,109 +1,112 @@
-<sky-list
-  [data]="items"
-  [defaultView]="grid"
->
-  <sky-list-toolbar>
-    <sky-list-toolbar-item
-      id="custom-item"
-      location="left"
-      index="0"
-    >
-      <ng-template>
-        <sky-dropdown
-          buttonStyle="primary"
-        >
-          <sky-dropdown-button>
-            <sky-icon icon="plus-circle"></sky-icon>
-            Add
-          </sky-dropdown-button>
-        </sky-dropdown>
-      </ng-template>
-    </sky-list-toolbar-item>
-
-    <sky-list-filter-button>
-      <sky-filter-button
-        [showButtonText]="true"
-        (filterButtonClick)="onFilterButtonClicked()"
+<app-nav></app-nav>
+<main>
+        <sky-list
+        [data]="items"
+        [defaultView]="grid"
       >
-      </sky-filter-button>
-    </sky-list-filter-button>
-
-    <sky-list-filter-summary
-      (summaryItemClick)="onSummaryItemClick()"
-    >
-    </sky-list-filter-summary>
-
-    <sky-list-toolbar-sort
-      label="Fruit name (A - Z)"
-      field="column2"
-      [descending]="false"
-      type="string"
-    >
-    </sky-list-toolbar-sort>
-
-    <sky-list-toolbar-sort
-      label="Fruit name (Z - A)"
-      field="column2"
-      [descending]="true"
-      type="string"
-    >
-    </sky-list-toolbar-sort>
-
-    <!-- <sky-list-column-selector-action
-      [gridView]="grid"
-    >
-    </sky-list-column-selector-action>
-
-    <sky-list-secondary-actions>
-      <sky-list-secondary-action>
-        <button type="button">
-          Option
-        </button>
-      </sky-list-secondary-action>
-    </sky-list-secondary-actions> -->
-
-    <sky-list-toolbar-view-actions>
-      <div class="sky-switch-icon-group">
-        <sky-radio
-          icon="table"
-          name="iconradiogrouptest"
-          value="table"
-          [(ngModel)]="iconGroupSelectedValue">
-        </sky-radio>
-        <sky-radio
-          icon="list"
-          name="iconradiogrouptest"
-          value="list"
-          [(ngModel)]="iconGroupSelectedValue">
-        </sky-radio>
-        <sky-radio
-          icon="th-large"
-          name="iconradiogrouptest"
-          value="cards"
-          [(ngModel)]="iconGroupSelectedValue">
-        </sky-radio>
-        <sky-radio
-          icon="map-marker"
-          name="iconradiogrouptest"
-          value="map"
-          [(ngModel)]="iconGroupSelectedValue">
-        </sky-radio>
-      </div>
-    </sky-list-toolbar-view-actions>
-
-  </sky-list-toolbar>
-
-  <sky-list-view-grid fit="scroll" #grid>
-    <sky-grid-column
-      field="column1"
-      heading="Column1"
-      [isSortable]="false"
-    >
-    </sky-grid-column>
-    <sky-grid-column
-      field="column2"
-      heading="Column2"
-    >
-    </sky-grid-column>
-  </sky-list-view-grid>
-</sky-list>
+        <sky-list-toolbar>
+          <sky-list-toolbar-item
+            id="custom-item"
+            location="left"
+            index="0"
+          >
+            <ng-template>
+              <sky-dropdown
+                buttonStyle="primary"
+              >
+                <sky-dropdown-button>
+                  <sky-icon icon="plus-circle"></sky-icon>
+                  Add
+                </sky-dropdown-button>
+              </sky-dropdown>
+            </ng-template>
+          </sky-list-toolbar-item>
+      
+          <sky-list-filter-button>
+            <sky-filter-button
+              [showButtonText]="true"
+              (filterButtonClick)="onFilterButtonClicked()"
+            >
+            </sky-filter-button>
+          </sky-list-filter-button>
+      
+          <sky-list-filter-summary
+            (summaryItemClick)="onSummaryItemClick()"
+          >
+          </sky-list-filter-summary>
+      
+          <sky-list-toolbar-sort
+            label="Fruit name (A - Z)"
+            field="column2"
+            [descending]="false"
+            type="string"
+          >
+          </sky-list-toolbar-sort>
+      
+          <sky-list-toolbar-sort
+            label="Fruit name (Z - A)"
+            field="column2"
+            [descending]="true"
+            type="string"
+          >
+          </sky-list-toolbar-sort>
+      
+          <!-- <sky-list-column-selector-action
+            [gridView]="grid"
+          >
+          </sky-list-column-selector-action>
+      
+          <sky-list-secondary-actions>
+            <sky-list-secondary-action>
+              <button type="button">
+                Option
+              </button>
+            </sky-list-secondary-action>
+          </sky-list-secondary-actions> -->
+      
+          <sky-list-toolbar-view-actions>
+            <div class="sky-switch-icon-group">
+              <sky-radio
+                icon="table"
+                name="iconradiogrouptest"
+                value="table"
+                [(ngModel)]="iconGroupSelectedValue">
+              </sky-radio>
+              <sky-radio
+                icon="list"
+                name="iconradiogrouptest"
+                value="list"
+                [(ngModel)]="iconGroupSelectedValue">
+              </sky-radio>
+              <sky-radio
+                icon="th-large"
+                name="iconradiogrouptest"
+                value="cards"
+                [(ngModel)]="iconGroupSelectedValue">
+              </sky-radio>
+              <sky-radio
+                icon="map-marker"
+                name="iconradiogrouptest"
+                value="map"
+                [(ngModel)]="iconGroupSelectedValue">
+              </sky-radio>
+            </div>
+          </sky-list-toolbar-view-actions>
+      
+        </sky-list-toolbar>
+      
+        <sky-list-view-grid fit="scroll" #grid>
+          <sky-grid-column
+            field="column1"
+            heading="Column1"
+            [isSortable]="false"
+          >
+          </sky-grid-column>
+          <sky-grid-column
+            field="column2"
+            heading="Column2"
+          >
+          </sky-grid-column>
+        </sky-list-view-grid>
+      </sky-list>
+</main>
