@@ -13,6 +13,9 @@
     <input class="sky-form-control" id="form-group-second-input-example" type="password" required=true [(ngModel)]="Password">
     <input type="checkbox"><label for="checkbox">Keep me logged in</label>
     <input type="submit" value="Login" (click)="login()">
+    <a skyAppLink="/">
+      Go to Record Page
+    </a>
   </div>
   <div *ngIf="error" class="alert alert-danger">
   </div>
