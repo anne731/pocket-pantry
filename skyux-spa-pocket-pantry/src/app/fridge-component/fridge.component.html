@@ -1,5 +1,11 @@
+<ng-container *ngFor="let al of alertList; let i = index">
+  <sky-alert [alertType]="danger">
+    Your {{al.name}} will expire in {{dayList[i]}} days.
+  </sky-alert>
+</ng-container>
+
 <div style="padding: 0px 15px 0px 15px">
-<sky-list *ngIf="itemSet"
+<sky-list
   [data]="items"
   [defaultView]="grid"
 >
@@ -120,31 +126,31 @@
 
   <sky-list-view-grid fit="scroll" #grid>
     <sky-grid-column
-      field="column1"
+      field="name"
       heading="Food Item"
       [isSortable]="true"
     >
     </sky-grid-column>
     <sky-grid-column
-      field="column2"
+      field="purchaseDate"
       heading="Date Purchased"
       [isSortable]="true"
     >
     </sky-grid-column>
     <sky-grid-column
-      field="column3"
-      heading="expirationDate Date"
+      field="expirationDate"
+      heading="Expiration Date "
       [isSortable]="true"
     >
     </sky-grid-column>
     <sky-grid-column
-      field="column4"
+      field="foodType"
       heading="Food Type"
       [isSortable]="true"
     >
     </sky-grid-column>
     <sky-grid-column
-      field="column5"
+      field="servings"
       heading="Servings Left"
       [isSortable]="true"
     >

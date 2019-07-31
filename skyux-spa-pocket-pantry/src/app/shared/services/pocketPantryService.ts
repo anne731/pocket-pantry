@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { skyAuthHttpOptions } from '@skyux/http';
 import { Observable } from 'rxjs/Observable';
 import { REQUEST_OPTIONS } from './common-headers';
-import { FoodItem } from '../../models/FoodItem';
 
 @Injectable()
 export class PocketPantryService {
@@ -26,7 +25,7 @@ export class PocketPantryService {
     return this.http.get<any>(`${this.brokerUrl}api/pantry/fridge/${user}`, skyAuthHttpOptions(REQUEST_OPTIONS));
   }
 
-  public addFood(food: FoodItem): Observable<any> {
+  public addFood(food: string[]): Observable<any> {
     return this.http.post<any>(`${this.brokerUrl}api/pantry/food/`, food, skyAuthHttpOptions(REQUEST_OPTIONS));
   }
 

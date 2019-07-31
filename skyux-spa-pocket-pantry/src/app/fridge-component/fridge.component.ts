@@ -10,9 +10,6 @@ import {
 } from '@skyux/modals';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { FoodItem } from '../models/FoodItem';
-// import { ListToolbarShowMultiselectToolbarAction } from '@skyux/list-builder/modules/list/state';
-import { PocketPantryService } from '../shared/services/pocketPantryService';
-import { UserContext } from '../user-context';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -27,55 +24,53 @@ export class FridgeComponent implements OnInit {
   public valueA: string;
   public eventMessage?: string;
   public iconGroupSelectedValue = 'table';
+<<<<<<< HEAD
+  public fridge: FoodItem[] = [];
+  public pantry: FoodItem[] = [];
+=======
   public content: FoodItem[] = [];
+  public alertList: FoodItem[] =[];
+  public dayList: number[] = [];
+>>>>>>> d1c420772de8532f744291a06c9be3e5fd47e002
   public items: Observable<FoodItem[]>;
-  public itemSet: boolean;
 
   @Input()
   public pantryType: string;
 
   constructor(
-    private modal: SkyModalService,
-    private pantrySvc: PocketPantryService,
-    private context: UserContext
+    private modal: SkyModalService
   ) {
    }
 
   public ngOnInit() {
     if (this.pantryType === 'fridge') {
-      this.pantrySvc.getFridge('anne').subscribe( (data: any[]) => {
-        data.forEach( (item: any) => {
-          this.content.push({
-            name: item.name,
-            purchaseDate: item.purchaseDate,
-            expirationDate: item.expirationDate,
-            foodType: item.foodType,
-            servings: item.servings,
-            foodLocation: this.pantryType,
-            user: this.context.user.userName
-          });
-        });
-        this.items = Observable.of(this.content);
-        this.itemSet = true;
-      });
+      this.items = Observable.of(this.fridge);
     } else if (this.pantryType === 'pantry') {
-      this.pantrySvc.getPantry('anne').subscribe( (data: any[]) => {
-        data.forEach( (item: any) => {
-          this.content.push({
-            name: item.name,
-            purchaseDate: item.purchaseDate,
-            expirationDate: item.expirationDate,
-            foodType: item.foodType,
-            servings: item.servings,
-            foodLocation: this.pantryType,
-            user: this.context.user.userName
-          });
-        });
-        this.items = Observable.of(this.content);
-        this.itemSet = true;
-      });
+      this.items = Observable.of(this.pantry);
     }
+    this.alertList = [
+      new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit","fridge","anne")
+    ]
+    this.makeAlerts();
 
+  }
+
+  public makeAlerts() {
+    this.alertList = [];
+    this.dayList = [];
+    let today = new Date();
+    this.content.forEach(element => {
+      let month = element.expirationDate.slice(0,2);
+      let day = element.expirationDate.slice(3, 2);
+      let year = element.expirationDate.slice(5, 4);
+      let exDate = new Date(year+'-'+month+'-'+day+'T00:00:00');
+      let msBtwn = exDate.getTime() - today.getTime();
+      let daysBtwn = Math.floor(msBtwn / (1000*60*60*24));
+      if (daysBtwn < 5) {
+        this.alertList.push(element);
+        this.dayList.push(daysBtwn);
+      }
+    });
   }
 
   get ID(): number {
@@ -93,8 +88,19 @@ export class FridgeComponent implements OnInit {
     alert('Filter summary item clicked');
   }
 
-  public onDeleteButtonClicked(itemName: string) {
-    this.pantrySvc.deleteFood(itemName);
+  public onDeleteButtonClicked(itemName: string) {{
+      if (this.pantryType === 'fridge') {
+        this.fridge = this.fridge.filter( (item) => {
+          return item.name !== itemName;
+        });
+        this.items = Observable.of(this.fridge);
+      } else if (this.pantryType === 'pantry') {
+        this.fridge = this.pantry.filter( (item) => {
+          return item.name !== itemName;
+        });
+        this.items = Observable.of(this.pantry);
+      }
+    }
   }
 
   public onAddButtonClicked(): void {
@@ -105,9 +111,6 @@ export class FridgeComponent implements OnInit {
     this.eventMessage = 'help me';
 
     const modalInstance = this.modal.open(AddItemComponent, options.helpKey);
-    // modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
-    //   console.log(`Modal closed with reason: ${result.reason} and data: ${result.data}`);
-    // });
 
     modalInstance.helpOpened.subscribe((helpKey: string) => {
       this.eventMessage =  `
@@ -116,19 +119,18 @@ export class FridgeComponent implements OnInit {
     });
 
     modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
-      let temp = {
-        name: result.data[0],
-        purchaseDate: result.data[1],
-        expirationDate: result.data[2],
-        foodType: result.data[3],
-        servings: result.data[4],
-        foodLocation: this.pantryType,
-        user: 'anne'
-      };
+      let add = new FoodItem(result.data[0], result.data[2], result.data[1], result.data[4], result.data[3] );
       if (result.reason === 'save') {
-        this.pantrySvc.addFood(temp).subscribe( (item) => {
-          this.ngOnInit();
-        });
+        if (this.pantryType === 'fridge') {
+          console.log(add);
+          this.fridge.push(add);
+          console.log(this.fridge);
+          this.items = Observable.of(this.fridge);
+          console.log(this.items);
+        } else if (this.pantryType === 'pantry') {
+          this.pantry.push(add);
+          this.items = Observable.of(this.pantry);
+        }
       }
   });
 }
