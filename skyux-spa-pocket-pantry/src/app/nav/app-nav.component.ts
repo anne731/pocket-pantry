@@ -14,8 +14,8 @@ export class AppNavComponent {
       path: '/'
     },
     {
-      titleKey: 'Login',
-      path: '/login'
+      titleKey: 'Home',
+      path: '/home'
     },{
       titleKey: 'Pantry',
       path: '/pantry-component'
@@ -24,6 +24,6 @@ export class AppNavComponent {
       path: '/fridge-component'
     }
 
-  
+
   ];
 }

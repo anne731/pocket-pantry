@@ -10,8 +10,8 @@ import { FoodItem } from '../../models/FoodItem';
 export class PocketPantryService {
 
   private readonly brokerUrl: string = 'https://localhost:5001/';
-  constructor(protected http: HttpClient,
-              private skyAppConfig: SkyAppConfig
+  constructor(
+    protected http: HttpClient
               ) {
   }
 

@@ -37,7 +37,6 @@ import { PocketPantryService } from '../shared/services/pocketPantryService';
 
     public login() {
       this.pantrySvc.getUser(this._userName).subscribe(user => {
-        console.log(user);
         if (user === null) {
           this.error = true;
           this.message = 'User does not exist';
