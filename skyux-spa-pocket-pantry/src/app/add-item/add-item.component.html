@@ -15,7 +15,7 @@
             </label>
             <input #foodItem
                 type="text"
-                class="sky-form-control" 
+                class="sky-form-control"
                 placeholder="Ex: Tomato"
             >
         </div>
@@ -26,7 +26,7 @@
             </label>
             <sky-datepicker>
             <input
-                #datePurchased
+                #purchaseDate
                 skyDatepickerInput
                 [maxDate]="maxDate"
                 [minDate]="minDate"
@@ -39,11 +39,11 @@
         <br/>
         <div>
             <label>
-            Expiration Date (optional)
+            expirationDate Date (optional)
             </label>
             <sky-datepicker>
             <input
-                #expirationDate
+                #expirationDateDate
                 skyDatepickerInput
                 [maxDate]="maxDate2"
                 [minDate]="minDate2"
@@ -81,9 +81,9 @@
             <label>
             Servings Left
             </label>
-            <input #servingsLeft
+            <input #servings
                 type="text"
-                class="sky-form-control" 
+                class="sky-form-control"
                 placeholder="Ex: 5"
             >
         </div>
@@ -98,7 +98,7 @@
         <button
         class="sky-btn sky-btn-primary"
         type="button"
-        (click)="instance.save([foodItem.value, datePurchased.value, expirationDate.value, dropdownName, servingsLeft])">
+        (click)="instance.save([foodItem.value, purchaseDate.value, expirationDateDate.value, dropdownName, servings])">
         Save
         </button>
     </sky-modal-footer>

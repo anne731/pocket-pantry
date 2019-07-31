@@ -1,10 +1,6 @@
 import {
-  Component, Input
+  Component, Input, OnInit
 } from '@angular/core';
-
-import {
-  BehaviorSubject
-} from 'rxjs/BehaviorSubject';
 
 import 'rxjs/add/observable/of';
 
@@ -14,9 +10,10 @@ import {
 } from '@skyux/modals';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { FoodItem } from '../models/FoodItem';
-//import { ListToolbarShowMultiselectToolbarAction } from '@skyux/list-builder/modules/list/state';
+// import { ListToolbarShowMultiselectToolbarAction } from '@skyux/list-builder/modules/list/state';
 import { PocketPantryService } from '../shared/services/pocketPantryService';
 import { UserContext } from '../user-context';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-fridge-component',
@@ -24,38 +21,61 @@ import { UserContext } from '../user-context';
   styleUrls: ['./fridge.component.scss']
 })
 
-export class FridgeComponent {
-  @Input() public pantryType: string
+export class FridgeComponent implements OnInit {
+
+  private idNum: number = 1;
+  public valueA: string;
+  public eventMessage?: string;
+  public iconGroupSelectedValue = 'table';
+  public content: FoodItem[] = [];
+  public items: Observable<FoodItem[]>;
+  public itemSet: boolean;
+
+  @Input()
+  public pantryType: string;
+
   constructor(
     private modal: SkyModalService,
     private pantrySvc: PocketPantryService,
     private context: UserContext
   ) {
    }
-  private idNum: number = 1;
-  public valueA: string;
-  public eventMessage?: string;
-  public iconGroupSelectedValue = 'table';
-  public content : FoodItem[];
-  public items : BehaviorSubject<any> = new BehaviorSubject([
-    { id: this.idNum , column1: 'Bell Pepper', column2: '08/30/2019', column3: '08/30/2019', column4: "Vegetable", column5: 4 },
-    { id: this.idNum , column1: 'Apple', column2: '08/24/2019', column3: '08/31/2019', column4: "Fruit", column5: 2 }
-    // { id: '2', column1: '', column2: '', column3: '', column4: ""},
-    // { id: '3', column1: '', column2: '', column3: '', column4: "" },
-    // { id: '4', column1: '', column2: '', column3: '', column4: "" },
-    // { id: '5', column1: '', column2: '', column3: '', column4: "" },
-    // { id: '6', column1: '', column2: '', column3: '', column4: "" },
-    // { id: '7', column1: '', column2: '', column3: '', column4: "" }
-  ]);
-  
 
   public ngOnInit() {
-    this.pantrySvc.getPantry(this.context.user);
-    if (this.pantryType == "fridge") {
-      //get and display fridge data
-    } else if (this.pantryType == "pantry") {
-      //get and display pantry data
+    if (this.pantryType === 'fridge') {
+      this.pantrySvc.getFridge('anne').subscribe( (data: any[]) => {
+        data.forEach( (item: any) => {
+          this.content.push({
+            name: item.name,
+            purchaseDate: item.purchaseDate,
+            expirationDate: item.expirationDate,
+            foodType: item.foodType,
+            servings: item.servings,
+            foodLocation: this.pantryType,
+            user: this.context.user.userName
+          });
+        });
+        this.items = Observable.of(this.content);
+        this.itemSet = true;
+      });
+    } else if (this.pantryType === 'pantry') {
+      this.pantrySvc.getPantry('anne').subscribe( (data: any[]) => {
+        data.forEach( (item: any) => {
+          this.content.push({
+            name: item.name,
+            purchaseDate: item.purchaseDate,
+            expirationDate: item.expirationDate,
+            foodType: item.foodType,
+            servings: item.servings,
+            foodLocation: this.pantryType,
+            user: this.context.user.userName
+          });
+        });
+        this.items = Observable.of(this.content);
+        this.itemSet = true;
+      });
     }
+
   }
 
   get ID(): number {
@@ -73,39 +93,16 @@ export class FridgeComponent {
     alert('Filter summary item clicked');
   }
 
-  public makeItemList() {
-    let tmp = [];
-    for (let item of this.content) {
-      let newItm = { id: this.idNum , column1: item.name, column2: item.datePurchased, column3: item.expiration, column4: item.foodType, column5: item.servingsLeft };
-      tmp.push(newItm);
-    }
-    //this.items = Observable.of(tmp);
-    this.items.next(tmp);
-  }
-
   public onDeleteButtonClicked(itemName: string) {
-    console.log(itemName);
-    let tmp : any[] = [];
-    this.items.subscribe((itemslst: any[] )=> {
-      for (let thing of itemslst) { // not really sure how this works with the new foodType functionality??
-        if (thing.column1 !== itemName) {
-          console.log(thing.column1);
-          tmp.push(thing);
-        }
-      }
-    });
-    this.items.next(tmp);
-    //console.log(this.items);
-
+    this.pantrySvc.deleteFood(itemName);
   }
 
   public onAddButtonClicked(): void {
     const options: any = {
       ariaDescribedBy: 'docs-modal-content'
     };
-    
-  
-    this.eventMessage = "help me";
+
+    this.eventMessage = 'help me';
 
     const modalInstance = this.modal.open(AddItemComponent, options.helpKey);
     // modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
@@ -119,16 +116,19 @@ export class FridgeComponent {
     });
 
     modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
-
+      let temp = {
+        name: result.data[0],
+        purchaseDate: result.data[1],
+        expirationDate: result.data[2],
+        foodType: result.data[3],
+        servings: result.data[4],
+        foodLocation: this.pantryType,
+        user: 'anne'
+      };
       if (result.reason === 'save') {
-        let items = {
-          column1: result.data[0],
-          column2: result.data[1],
-          column3: result.data[2],
-          column4: result.data[3],
-          column5: result.data[4]
-
-        }
+        this.pantrySvc.addFood(temp).subscribe( (item) => {
+          this.ngOnInit();
+        });
       }
   });
 }

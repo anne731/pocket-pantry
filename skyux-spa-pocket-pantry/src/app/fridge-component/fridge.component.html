@@ -1,5 +1,5 @@
 <div style="padding: 0px 15px 0px 15px">
-<sky-list
+<sky-list *ngIf="itemSet"
   [data]="items"
   [defaultView]="grid"
 >
@@ -29,7 +29,7 @@
           </button>
       </ng-template>
     </sky-list-toolbar-item>
-    
+
     <sky-list-filter-button
     >
       <sky-filter-button
@@ -60,14 +60,14 @@
     >
     </sky-list-toolbar-sort>
     <sky-list-toolbar-sort
-      label="Expiration Date (Earliest)"
+      label="expirationDate Date (Earliest)"
       field="column3"
       [descending]="false"
       type="string"
     >
     </sky-list-toolbar-sort>
     <sky-list-toolbar-sort
-      label="Expiration Date (Latest)"
+      label="expirationDate Date (Latest)"
       field="column3"
       [descending]="true"
       type="string"
@@ -133,7 +133,7 @@
     </sky-grid-column>
     <sky-grid-column
       field="column3"
-      heading="Expiration Date"
+      heading="expirationDate Date"
       [isSortable]="true"
     >
     </sky-grid-column>
@@ -141,7 +141,7 @@
       field="column4"
       heading="Food Type"
       [isSortable]="true"
-    > 
+    >
     </sky-grid-column>
     <sky-grid-column
       field="column5"
