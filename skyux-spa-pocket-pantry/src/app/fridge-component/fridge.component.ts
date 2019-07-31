@@ -87,21 +87,21 @@ export class FridgeComponent implements OnInit {
 
   public onDeleteButtonClicked(itemName: string) {{
       if (this.pantryType === 'fridge') {
-        this.fridge = [];
+        let temp: FoodItem[] = [];
         this.fridge.forEach( (item) => {
           if (item.name !== itemName) {
-            this.fridge.push(item);
-            // this.items.next(item);
+            temp.push(item);
           }
         });
+        this.items.next(temp);
       } else if (this.pantryType === 'pantry') {
-        this.pantry = [];
+        let temp: FoodItem[] = [];
         this.pantry.forEach( (item) => {
           if (item.name !== itemName) {
-            this.pantry.push(item);
-            //nthis.items.next(item);
+            temp.push(item);
           }
         });
+        this.items.next(temp);
       }
     }
   }
@@ -135,6 +135,7 @@ export class FridgeComponent implements OnInit {
           this.items.next(this.fridge);
         }
       }
+      this.makeAlerts();
   });
 }
 

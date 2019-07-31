@@ -30,13 +30,6 @@ export class AddItemComponent {
     public instance: SkyModalInstance
   ) { }
 
-  // public items: any[] = [
-  //   { name: 'Action 1', disabled: false },
-  //   { name: 'Action 2', disabled: true },
-  //   { name: 'Action 3', disabled: false },
-  //   { name: 'Action 4', disabled: false },
-  //   { name: 'Action 5', disabled: false }
-  // ];
   public categoryClicked(item: string): string {
     this.category = item;
     this.dropdownName = item;
