@@ -24,14 +24,11 @@ export class FridgeComponent implements OnInit {
   public valueA: string;
   public eventMessage?: string;
   public iconGroupSelectedValue = 'table';
-<<<<<<< HEAD
   public fridge: FoodItem[] = [];
   public pantry: FoodItem[] = [];
-=======
-  public content: FoodItem[] = [];
   public alertList: FoodItem[] =[];
   public dayList: number[] = [];
->>>>>>> d1c420772de8532f744291a06c9be3e5fd47e002
+
   public items: Observable<FoodItem[]>;
 
   @Input()
@@ -48,9 +45,9 @@ export class FridgeComponent implements OnInit {
     } else if (this.pantryType === 'pantry') {
       this.items = Observable.of(this.pantry);
     }
-    this.alertList = [
-      new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit","fridge","anne")
-    ]
+    this.fridge = [
+      new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit")
+    ] //delete later
     this.makeAlerts();
 
   }
@@ -59,7 +56,9 @@ export class FridgeComponent implements OnInit {
     this.alertList = [];
     this.dayList = [];
     let today = new Date();
-    this.content.forEach(element => {
+    let content = this.pantryType == "fridge" ? this.fridge : this.pantry;
+    content = this.fridge; //delete later
+    content.forEach(element => {
       let month = element.expirationDate.slice(0,2);
       let day = element.expirationDate.slice(3, 2);
       let year = element.expirationDate.slice(5, 4);
