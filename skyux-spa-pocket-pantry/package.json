@@ -58,6 +58,7 @@
     "@skyux/router": "3.1.1",
     "@skyux/tabs": "3.1.0",
     "@skyux/theme": "3.7.0",
+    "@skyux/tiles": "^3.1.2",
     "microedge-rxstate": "^3.0.0",
     "rxjs": "6.5.2",
     "rxjs-compat": "6.5.2",
