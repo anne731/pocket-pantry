@@ -43,7 +43,7 @@ export class FridgeComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.pantrySvc.getPantry(this.context.user);
+    this.pantrySvc.getPantry(this.context.user.userName);
   }
 
   get ID(): number {
