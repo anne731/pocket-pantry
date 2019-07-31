@@ -10,7 +10,7 @@ import {
 } from '@skyux/modals';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { FoodItem } from '../models/FoodItem';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-fridge-component',
@@ -26,10 +26,10 @@ export class FridgeComponent implements OnInit {
   public iconGroupSelectedValue = 'table';
   public fridge: FoodItem[] = [];
   public pantry: FoodItem[] = [];
-  public alertList: FoodItem[] =[];
+  public alertList: FoodItem[] = [];
   public dayList: number[] = [];
 
-  public items: Observable<FoodItem[]>;
+  public items: BehaviorSubject<FoodItem[]> = new BehaviorSubject([]);
 
   @Input()
   public pantryType: string;
@@ -41,12 +41,13 @@ export class FridgeComponent implements OnInit {
 
   public ngOnInit() {
     if (this.pantryType === 'fridge') {
-      this.items = Observable.of(this.fridge);
+      this.fridge.push(new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit"));
+      this.items.next(this.fridge);
     } else if (this.pantryType === 'pantry') {
-      this.items = Observable.of(this.pantry);
+      this.pantry.push(new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit"));
+      this.items.next(this.pantry);
     }
     this.makeAlerts();
-
   }
 
   public makeAlerts() {
@@ -87,15 +88,21 @@ export class FridgeComponent implements OnInit {
 
   public onDeleteButtonClicked(itemName: string) {{
       if (this.pantryType === 'fridge') {
-        this.fridge = this.fridge.filter( (item) => {
-          return item.name !== itemName;
+        let temp: FoodItem[] = [];
+        this.fridge.forEach( (item) => {
+          if (item.name !== itemName) {
+            temp.push(item);
+          }
         });
-        this.items = Observable.of(this.fridge);
+        this.items.next(temp);
       } else if (this.pantryType === 'pantry') {
-        this.fridge = this.pantry.filter( (item) => {
-          return item.name !== itemName;
+        let temp: FoodItem[] = [];
+        this.pantry.forEach( (item) => {
+          if (item.name !== itemName) {
+            temp.push(item);
+          }
         });
-        this.items = Observable.of(this.pantry);
+        this.items.next(temp);
       }
     }
   }
@@ -116,19 +123,17 @@ export class FridgeComponent implements OnInit {
     });
 
     modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
-      let add = new FoodItem(result.data[0], result.data[2], result.data[1], result.data[4], result.data[3] );
+      let add = new FoodItem(result.data[0], result.data[2], result.data[1], result.data[4], result.data[3]);
       if (result.reason === 'save') {
         if (this.pantryType === 'fridge') {
-          console.log(add);
           this.fridge.push(add);
-          console.log(this.fridge);
-          this.items = Observable.of(this.fridge);
-          console.log(this.items);
+          this.items.next(this.fridge);
         } else if (this.pantryType === 'pantry') {
           this.pantry.push(add);
-          this.items = Observable.of(this.pantry);
+          this.items.next(this.pantry);
         }
       }
+      this.makeAlerts();
   });
 }
 

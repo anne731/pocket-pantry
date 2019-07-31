@@ -162,7 +162,7 @@
     </sky-grid-column>
   </sky-list-view-grid>
   <ng-template let-row="row" #deleteButton>
-      <button type="button" class="sky-btn sky-btn-link" (click)="onDeleteButtonClicked(row.column1)">
+      <button type="button" class="sky-btn sky-btn-link" (click)="onDeleteButtonClicked(row.name)">
           <sky-icon icon="minus-circle"></sky-icon>
         Delete Item
       </button>
