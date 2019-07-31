@@ -1,10 +1,6 @@
 import {
-  Component, ChangeDetectorRef
+  Component, Input
 } from '@angular/core';
-
-import {
-  Observable
-} from 'rxjs/Observable';
 
 import {
   BehaviorSubject
@@ -18,7 +14,7 @@ import {
 } from '@skyux/modals';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { FoodItem } from '../models/FoodItem';
-import { ListToolbarShowMultiselectToolbarAction } from '@skyux/list-builder/modules/list/state';
+//import { ListToolbarShowMultiselectToolbarAction } from '@skyux/list-builder/modules/list/state';
 import { PocketPantryService } from '../shared/services/pocketPantryService';
 import { UserContext } from '../user-context';
 
@@ -29,12 +25,13 @@ import { UserContext } from '../user-context';
 })
 
 export class FridgeComponent {
+  @Input() public pantryType: string
   constructor(
     private modal: SkyModalService,
-    private changeDetector: ChangeDetectorRef,
     private pantrySvc: PocketPantryService,
     private context: UserContext
-  ) { }
+  ) {
+   }
   private idNum: number = 1;
   public valueA: string;
   public eventMessage?: string;
@@ -54,6 +51,12 @@ export class FridgeComponent {
 
   public ngOnInit() {
     this.pantrySvc.getPantry(this.context.user);
+    console.log(this.pantryType);
+    if (this.pantryType == "fridge") {
+      //get and display fridge data
+    } else if (this.pantryType == "pantry") {
+      //get and display pantry data
+    }
   }
 
   get ID(): number {
