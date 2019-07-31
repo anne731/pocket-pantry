@@ -86,21 +86,21 @@ export class FridgeComponent implements OnInit {
       //       return e.trim();
       //     });
       //   }
-      if (result.reason === 'save') {
-        let items = {
-          column1: result.data[0],
-          column2: result.data[1],
-          column3: result.data[2],
-          column4: result.data[3]
+      // if (result.reason === 'save') {
+      //   let items = {
+      //     column1: result.data[0],
+      //     column2: result.data[1],
+      //     column3: result.data[2],
+      //     column4: result.data[3]
 
-        };
-        console.log(result.data);
-      }
-        console.log(result.reason);
-        console.log(result);
-        // this.items.subscribe({id: this.ID, column1:  }) ;
-        // this.ID++;
+      //   }
+      //   console.log(result.data);
       // }
+      //   console.log(result.reason);
+      //   console.log(result);
+      //   // this.items.subscribe({id: this.ID, column1:  }) ;
+      //   // this.ID++;
+      // // }
     });
   }
 }
