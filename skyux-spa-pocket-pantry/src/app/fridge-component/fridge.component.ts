@@ -125,14 +125,11 @@ export class FridgeComponent implements OnInit {
       let add = new FoodItem(result.data[0], result.data[2], result.data[1], result.data[4], result.data[3]);
       if (result.reason === 'save') {
         if (this.pantryType === 'fridge') {
-          console.log(add);
           this.fridge.push(add);
-          console.log(this.fridge);
           this.items.next(this.fridge);
-          console.log(this.items);
         } else if (this.pantryType === 'pantry') {
           this.pantry.push(add);
-          this.items.next(this.fridge);
+          this.items.next(this.pantry);
         }
       }
       this.makeAlerts();
