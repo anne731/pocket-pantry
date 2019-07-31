@@ -1,5 +1,5 @@
-<!-- <app-nav>
-    
-</app-nav> -->
+<app-nav *ngIf="user !== undefined">
+</app-nav>
+<login-component *ngIf="user === undefined">
+</login-component>
 
-<

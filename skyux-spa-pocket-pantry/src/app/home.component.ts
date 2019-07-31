@@ -1,14 +1,20 @@
 import {
   Component
 } from '@angular/core';
-
-// import { DatePipe } from '@angular/common';
+import { UserContext } from './user-context';
 
 @Component({
   selector: 'my-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent {
+
+  constructor (
+    public user : UserContext
+  ) {
+
+  }
 
 }

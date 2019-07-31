@@ -10,14 +10,6 @@
       index="0"
     >
       <ng-template>
-        <!-- <sky-dropdown
-          buttonStyle="primary"
-        >
-          <sky-dropdown-button>
-            <sky-icon icon="plus-circle"></sky-icon>
-            Add
-          </sky-dropdown-button>
-        </sky-dropdown> -->
         <button type="button" class="sky-btn sky-btn-primary"
         (click)="onAddButtonClicked()">
             <sky-icon icon="plus-circle"></sky-icon>
@@ -27,7 +19,6 @@
     </sky-list-toolbar-item>
     <sky-list-toolbar-item
       id="scan-item"
-      location="left"
       index="1"
     >
       <ng-template>
@@ -38,6 +29,7 @@
           </button>
       </ng-template>
     </sky-list-toolbar-item>
+    
     <sky-list-filter-button
     >
       <sky-filter-button
@@ -54,7 +46,7 @@
 
     <sky-list-toolbar-sort
       label="Item Name (A - Z)"
-      field="column2"
+      field="column1"
       [descending]="false"
       type="string"
     >
@@ -62,7 +54,21 @@
 
     <sky-list-toolbar-sort
       label="Item Name (Z - A)"
-      field="column2"
+      field="column1"
+      [descending]="true"
+      type="string"
+    >
+    </sky-list-toolbar-sort>
+    <sky-list-toolbar-sort
+      label="Expiration Date (Earliest)"
+      field="column3"
+      [descending]="false"
+      type="string"
+    >
+    </sky-list-toolbar-sort>
+    <sky-list-toolbar-sort
+      label="Expiration Date (Latest)"
+      field="column3"
       [descending]="true"
       type="string"
     >
@@ -137,8 +143,24 @@
       [isSortable]="true"
     > 
     </sky-grid-column>
-    
+    <sky-grid-column
+      field="column5"
+      heading="Servings Left"
+      [isSortable]="true"
+    >
+    </sky-grid-column>
+    <sky-grid-column
+      field="column6"
+      [template]="deleteButton"
+    >
+    </sky-grid-column>
   </sky-list-view-grid>
+  <ng-template let-row="row" #deleteButton>
+      <button type="button" class="sky-btn sky-btn-link" (click)="onDeleteButtonClicked(row.column1)">
+          <sky-icon icon="minus-circle"></sky-icon>
+        Delete Item
+      </button>
+  </ng-template>
   <!-- <sky-list-paging pageSize="10"></sky-list-paging> -->
 </sky-list>
 </div>

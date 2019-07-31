@@ -2,10 +2,12 @@ import {
   Component
 } from '@angular/core';
 
+//import { FridgeComponent } from '../fridge-component/fridge.component';
+
 @Component({
-  selector: 'app-pantry',
-  templateUrl: './pantry.component.html'
+  templateUrl: '../fridge-component/fridge.component.html'
 })
 export class PantryComponent {
+
 
 }

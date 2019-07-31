@@ -55,16 +55,6 @@ export class AddItemComponent {
     this._category = value;
   }
 
-  // public save(fooditem:string, datepurchased:string, expiration:string ) {
-  //   console.log(fooditem);
-  //   console.log(datepurchased);
-  //   console.log(expiration);
-  //   let fieldCapture: string[];
-  //   fieldCapture.push(fooditem,datepurchased,expiration, this.category);
-  //   console.log(fieldCapture);
-   
-  // }
-
   
 
 }

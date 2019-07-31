@@ -75,6 +75,19 @@
                 </sky-dropdown-menu>
                 </sky-dropdown>
         </div>
+
+        <br/>
+        <div>
+            <label>
+            Servings Left
+            </label>
+            <input #servingsLeft
+                type="text"
+                class="sky-form-control" 
+                placeholder="Ex: 5"
+            >
+        </div>
+
         <!-- <p>
         <sky-alert *ngIf="context.eventMessage">
             {{context.eventMessage}}
@@ -85,7 +98,7 @@
         <button
         class="sky-btn sky-btn-primary"
         type="button"
-        (click)="instance.save([foodItem.value, datePurchased.value, expirationDate.value, dropdownName])">
+        (click)="instance.save([foodItem.value, datePurchased.value, expirationDate.value, dropdownName, servingsLeft])">
         Save
         </button>
     </sky-modal-footer>
