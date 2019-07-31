@@ -117,12 +117,7 @@ export class FridgeComponent {
     });
 
     modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
-      // if (result.reason === 'save') {
-      //   if (result.data.) {
-      //     requiredFieldsArray = result.data.requiredFields.split(',').map(function(e: string) {
-      //       return e.trim();
-      //     });
-      //   }
+
       if (result.reason === 'save') {
         let items = {
           column1: result.data[0],
@@ -131,15 +126,9 @@ export class FridgeComponent {
           column4: result.data[3],
           column5: result.data[4]
 
+        }
+      }
+  });
+}
 
-      //   }
-      //   console.log(result.data);
-      // }
-      //   console.log(result.reason);
-      //   console.log(result);
-      //   // this.items.subscribe({id: this.ID, column1:  }) ;
-      //   // this.ID++;
-      // // }
-    });
-  }
 }
