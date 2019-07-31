@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SkyAppConfig } from '@skyux/config';
 import { HttpClient } from '@angular/common/http';
 import { skyAuthHttpOptions } from '@skyux/http';
 import { Observable } from 'rxjs/Observable';
@@ -20,11 +19,19 @@ export class PocketPantryService {
   }
 
   public getPantry(user: string): Observable<any> {
-    return this.http.get<any>(`${this.brokerUrl}api/pantry/user${user}`, skyAuthHttpOptions(REQUEST_OPTIONS));
+    return this.http.get<any>(`${this.brokerUrl}api/pantry/pantry/${user}`, skyAuthHttpOptions(REQUEST_OPTIONS));
+  }
+
+  public getFridge(user: string): Observable<any> {
+    return this.http.get<any>(`${this.brokerUrl}api/pantry/fridge/${user}`, skyAuthHttpOptions(REQUEST_OPTIONS));
   }
 
   public addFood(food: FoodItem): Observable<any> {
     return this.http.post<any>(`${this.brokerUrl}api/pantry/food/${food.name}`, food, skyAuthHttpOptions(REQUEST_OPTIONS));
+  }
+
+  public deleteFood(food: string): Observable<any> {
+    return this.http.delete<any>(`${this.brokerUrl}api/pantry/food/${food}`, skyAuthHttpOptions(REQUEST_OPTIONS));
   }
 
 }

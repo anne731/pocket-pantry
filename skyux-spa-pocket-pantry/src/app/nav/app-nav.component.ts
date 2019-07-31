@@ -15,7 +15,7 @@ export class AppNavComponent {
     },
     {
       titleKey: 'Home',
-      path: '/home'
+      path: '/home-page'
     },{
       titleKey: 'Pantry',
       path: '/pantry-component'
