@@ -1,5 +1,5 @@
 <div style="padding: 0px 15px 0px 15px">
-<sky-list
+<sky-list *ngIf="itemSet"
   [data]="items"
   [defaultView]="grid"
 >
@@ -29,7 +29,7 @@
           </button>
       </ng-template>
     </sky-list-toolbar-item>
-    
+
     <sky-list-filter-button
     >
       <sky-filter-button
@@ -141,7 +141,7 @@
       field="column4"
       heading="Food Type"
       [isSortable]="true"
-    > 
+    >
     </sky-grid-column>
     <sky-grid-column
       field="column5"

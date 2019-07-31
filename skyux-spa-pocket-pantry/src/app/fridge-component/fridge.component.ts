@@ -36,26 +36,24 @@ export class FridgeComponent {
   public valueA: string;
   public eventMessage?: string;
   public iconGroupSelectedValue = 'table';
-  public content : FoodItem[];
-  public items : BehaviorSubject<any> = new BehaviorSubject([
-    { id: this.idNum , column1: 'Bell Pepper', column2: '08/30/2019', column3: '08/30/2019', column4: "Vegetable", column5: 4 },
-    { id: this.idNum , column1: 'Apple', column2: '08/24/2019', column3: '08/31/2019', column4: "Fruit", column5: 2 }
-    // { id: '2', column1: '', column2: '', column3: '', column4: ""},
-    // { id: '3', column1: '', column2: '', column3: '', column4: "" },
-    // { id: '4', column1: '', column2: '', column3: '', column4: "" },
-    // { id: '5', column1: '', column2: '', column3: '', column4: "" },
-    // { id: '6', column1: '', column2: '', column3: '', column4: "" },
-    // { id: '7', column1: '', column2: '', column3: '', column4: "" }
-  ]);
+  public content: FoodItem[];
+  public items: Observable<any>;
+  public itemsSet: boolean;
 
 
   public ngOnInit() {
-    this.pantrySvc.getPantry(this.context.user);
+    this.pantrySvc.getPantry('anne').subscribe(data => {
+      this.items = data;
+      makeItemList();
+      console.log(this.items);
+      this.itemSet = true;
+    });
     if (this.pantryType == "fridge") {
       //get and display fridge data
     } else if (this.pantryType == "pantry") {
       //get and display pantry data
     }
+
   }
 
   get ID(): number {
@@ -75,6 +73,7 @@ export class FridgeComponent {
 
   public makeItemList() {
     let tmp = [];
+
     for (let item of this.content) {
       let newItm = { id: this.idNum , column1: item.name, column2: item.datePurchased, column3: item.expiration, column4: item.foodType, column5: item.servingsLeft };
       tmp.push(newItm);
