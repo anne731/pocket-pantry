@@ -1,5 +1,5 @@
 import {
-  Component, Input, OnInit
+  Component, Input, OnInit, ChangeDetectorRef
 } from '@angular/core';
 
 import 'rxjs/add/observable/of';
@@ -35,7 +35,8 @@ export class FridgeComponent implements OnInit {
   public pantryType: string;
 
   constructor(
-    private modal: SkyModalService
+    private modal: SkyModalService,
+    private changeDetector: ChangeDetectorRef
   ) {
    }
 
@@ -86,7 +87,7 @@ export class FridgeComponent implements OnInit {
     alert('Filter summary item clicked');
   }
 
-  public onDeleteButtonClicked(itemName: string) {{
+  public onDeleteButtonClicked(itemName: string) {
       if (this.pantryType === 'fridge') {
         let temp: FoodItem[] = [];
         this.fridge.forEach( (item) => {
@@ -104,7 +105,10 @@ export class FridgeComponent implements OnInit {
         });
         this.items.next(temp);
       }
-    }
+      this.makeAlerts();
+      this.changeDetector.checkNoChanges();
+
+    
   }
 
   public onAddButtonClicked(): void {
@@ -134,6 +138,7 @@ export class FridgeComponent implements OnInit {
         }
       }
       this.makeAlerts();
+      this.changeDetector.detectChanges();
   });
 }
 
