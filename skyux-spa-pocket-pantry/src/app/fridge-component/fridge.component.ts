@@ -1,5 +1,5 @@
 import {
-  Component
+  Component, OnInit
 } from '@angular/core';
 
 import {
@@ -13,6 +13,8 @@ import {
   SkyModalCloseArgs
 } from '@skyux/modals';
 import { AddItemComponent } from '../add-item/add-item.component';
+import { PocketPantryService } from '../shared/services/pocketPantryService';
+import { UserContext } from '../user-context';
 
 @Component({
   selector: 'app-fridge-component',
@@ -20,16 +22,13 @@ import { AddItemComponent } from '../add-item/add-item.component';
   styleUrls: ['./fridge.component.scss']
 })
 
-export class FridgeComponent {
-  constructor(
-    private modal: SkyModalService
-  ) { }
+export class FridgeComponent implements OnInit {
   private idNum: number = 1;
   public valueA: string;
   public eventMessage?: string;
   public iconGroupSelectedValue = 'table';
   public items = Observable.of([
-    { id: this.idNum , column1: 'Bell Pepper', column2: '8.30.2019', column3: 'TBD', column4: "Vegetable" }
+    { id: this.idNum , column1: 'Bell Pepper', column2: '8.30.2019', column3: 'TBD', column4: 'Vegetable' }
     // { id: '2', column1: '', column2: '', column3: '', column4: ""},
     // { id: '3', column1: '', column2: '', column3: '', column4: "" },
     // { id: '4', column1: '', column2: '', column3: '', column4: "" },
@@ -37,11 +36,20 @@ export class FridgeComponent {
     // { id: '6', column1: '', column2: '', column3: '', column4: "" },
     // { id: '7', column1: '', column2: '', column3: '', column4: "" }
   ]);
+  constructor(
+    private modal: SkyModalService,
+    private pantrySvc: PocketPantryService,
+    private context: UserContext
+  ) { }
+
+  public ngOnInit() {
+    this.pantrySvc.getPantry(this.context.user);
+  }
 
   get ID(): number {
     return this.idNum;
   }
-  set ID(value:number) {
+  set ID( value: number ) {
     this.idNum = value;
   }
 
@@ -85,7 +93,7 @@ export class FridgeComponent {
           column3: result.data[2],
           column4: result.data[3]
 
-        }
+        };
         console.log(result.data);
       }
         console.log(result.reason);
