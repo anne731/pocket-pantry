@@ -51,7 +51,6 @@ export class FridgeComponent {
 
   public ngOnInit() {
     this.pantrySvc.getPantry(this.context.user);
-    console.log(this.pantryType);
     if (this.pantryType == "fridge") {
       //get and display fridge data
     } else if (this.pantryType == "pantry") {
