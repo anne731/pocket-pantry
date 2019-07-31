@@ -24,14 +24,11 @@ export class FridgeComponent implements OnInit {
   public valueA: string;
   public eventMessage?: string;
   public iconGroupSelectedValue = 'table';
-<<<<<<< HEAD
   public fridge: FoodItem[] = [];
   public pantry: FoodItem[] = [];
-=======
   public content: FoodItem[] = [];
   public alertList: FoodItem[] =[];
   public dayList: number[] = [];
->>>>>>> d1c420772de8532f744291a06c9be3e5fd47e002
   public items: Observable<FoodItem[]>;
 
   @Input()
