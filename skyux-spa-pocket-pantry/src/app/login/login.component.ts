@@ -27,8 +27,4 @@ import { Component, Input} from '@angular/core';
       public get PassWord() {
         return this._password;
       }
-
-    constructor() { }
-    }
-
   }

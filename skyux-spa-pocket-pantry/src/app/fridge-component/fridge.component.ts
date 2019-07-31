@@ -27,7 +27,7 @@ export class FridgeComponent implements OnInit {
   public fridge: FoodItem[] = [];
   public pantry: FoodItem[] = [];
   public content: FoodItem[] = [];
-  public alertList: FoodItem[] =[];
+  public alertList: FoodItem[] = [];
   public dayList: number[] = [];
   public items: Observable<FoodItem[]>;
 
@@ -46,7 +46,7 @@ export class FridgeComponent implements OnInit {
       this.items = Observable.of(this.pantry);
     }
     this.alertList = [
-      new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit","fridge","anne")
+      new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit")
     ]
     this.makeAlerts();
 
