@@ -1,8 +1,10 @@
 import {
   Component
 } from '@angular/core';
+import { UserContext } from './user-context';
 
-// import { DatePipe } from '@angular/common';
+import { NgIf, //DatePipe 
+} from '@angular/common';
 
 @Component({
   selector: 'my-home',
@@ -10,5 +12,11 @@ import {
 })
 
 export class HomeComponent {
+
+  constructor (
+    public user : UserContext
+  ) {
+
+  }
 
 }
