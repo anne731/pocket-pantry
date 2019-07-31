@@ -75,7 +75,8 @@ import {
   SkyDatepickerModule
 } from '@skyux/datetime'
 
-
+import { SkyPageSummaryModule } from '@skyux/layout';
+import { SkyTilesModule } from '@skyux/tiles';
 
 @NgModule({
   exports: [
@@ -97,7 +98,9 @@ import {
     SkyAppLinkModule,
     SkyActionButtonModule,
     SkyModalModule,
-    SkyDatepickerModule
+    SkyDatepickerModule,
+    SkyPageSummaryModule,
+    SkyTilesModule
   ]
 })
 export class AppSkyModule { }
