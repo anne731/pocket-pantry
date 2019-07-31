@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "fridge.component.scss"
+    ],
+    "names": [],
+    "file": "fridge.component.css"
+}

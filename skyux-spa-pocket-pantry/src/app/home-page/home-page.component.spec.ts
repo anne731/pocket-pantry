@@ -10,12 +10,11 @@ import {
   expect
 } from '@skyux-sdk/testing';
 
-// Component we're going to test
 import {
-  HomeComponent
-} from './home.component';
+  HomePageComponent
+} from './home-page.component';
 
-describe('Home component', () => {
+describe('Home page component', () => {
 
   /**
    * This configureTestingModule function imports SkyAppTestModule, which brings in all of
@@ -25,19 +24,16 @@ describe('Home component', () => {
    */
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SkyAppTestModule
-      ]
+      imports: [SkyAppTestModule]
     });
   });
 
-  it('should display a sky-alert', () => {
-    const fixture = TestBed.createComponent(HomeComponent);
-    const alertEl = fixture.nativeElement.querySelector('sky-alert');
+  it('should do something', () => {
+    const fixture = TestBed.createComponent(HomePageComponent);
 
-    // Using custom expect matchers
-    expect(alertEl).toBeVisible();
-    expect(alertEl).toHaveText(`You've just taken your first step into a larger world.`);
+    fixture.detectChanges();
+
+    expect(true).toBe(false);
   });
 
 });
