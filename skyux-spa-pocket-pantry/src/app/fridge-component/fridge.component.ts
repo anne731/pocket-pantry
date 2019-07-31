@@ -93,8 +93,10 @@ export class FridgeComponent {
           tmp.push(thing);
         }
       }
+      this.items.next(tmp);
+      console.log(tmp);
+
     });
-    this.items.next(tmp);
     //console.log(this.items);
 
   }
