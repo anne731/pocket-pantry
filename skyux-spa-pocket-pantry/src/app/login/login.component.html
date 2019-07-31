@@ -1,0 +1,22 @@
+<div class="center-div">
+<div class="sky-form-group" style="max-width: 85%">
+    <label for="form-group-first-input-example" class="sky-control-label">
+      Username:
+    </label>
+    <input class="sky-form-control" id="form-group-first-input-example" type="text" [(ngModel)]="UserName">
+  </div>
+  <div class="sky-form-group" style="max-width: 85%">
+    <label for="form-group-second-input-example" class="sky-control-label">
+      Password:
+    </label>
+
+    <input class="sky-form-control" id="form-group-second-input-example" type="password" required=true [(ngModel)]="Password">
+    <input type="checkbox"><label for="checkbox">Keep me logged in</label>
+    <input type="submit" value="Login" (click)="login()">
+  </div>
+  <div *ngIf="error" class="alert alert-danger">
+  </div>
+  <div *ngIf="error" class="sky-error-label">
+    {{message}}
+  </div>
+  </div>

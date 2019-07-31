@@ -19,6 +19,8 @@ import {
 import { AddItemComponent } from '../add-item/add-item.component';
 import { FoodItem } from '../models/FoodItem';
 import { ListToolbarShowMultiselectToolbarAction } from '@skyux/list-builder/modules/list/state';
+import { PocketPantryService } from '../shared/services/pocketPantryService';
+import { UserContext } from '../user-context';
 
 @Component({
   selector: 'app-fridge-component',
@@ -29,7 +31,9 @@ import { ListToolbarShowMultiselectToolbarAction } from '@skyux/list-builder/mod
 export class FridgeComponent {
   constructor(
     private modal: SkyModalService,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    private pantrySvc: PocketPantryService,
+    private context: UserContext
   ) { }
   private idNum: number = 1;
   public valueA: string;
@@ -46,11 +50,16 @@ export class FridgeComponent {
     // { id: '6', column1: '', column2: '', column3: '', column4: "" },
     // { id: '7', column1: '', column2: '', column3: '', column4: "" }
   ]);
+  
+
+  public ngOnInit() {
+    this.pantrySvc.getPantry(this.context.user);
+  }
 
   get ID(): number {
     return this.idNum;
   }
-  set ID(value:number) {
+  set ID( value: number ) {
     this.idNum = value;
   }
 
@@ -122,17 +131,7 @@ export class FridgeComponent {
           column4: result.data[3],
           column5: result.data[4]
 
-        }
-        // this.acbService.postNewContractVersion(
-        //   this._topicName, this._contractName, request
-        // ).subscribe(
-        //   (postResult: any) => {
-        //   this.ngOnInit();
-        // },
-        //   (err: any) => {
-        //     console.log(err);
-        //   }
-        // );
+        };
         console.log(result.data);
       }
         console.log(result.reason);
