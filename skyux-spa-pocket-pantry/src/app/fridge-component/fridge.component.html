@@ -1,3 +1,9 @@
+<ng-container *ngFor="let al of alertList; let i = index">
+  <sky-alert [alertType]="danger">
+    Your {{al.name}} will expire in {{dayList[i]}} days.
+  </sky-alert>
+</ng-container>
+
 <div style="padding: 0px 15px 0px 15px">
 <sky-list *ngIf="itemSet"
   [data]="items"

@@ -28,6 +28,8 @@ export class FridgeComponent implements OnInit {
   public eventMessage?: string;
   public iconGroupSelectedValue = 'table';
   public content: FoodItem[] = [];
+  public alertList: FoodItem[] =[];
+  public dayList: number[] = [];
   public items: Observable<FoodItem[]>;
   public itemSet: boolean;
 
@@ -75,7 +77,29 @@ export class FridgeComponent implements OnInit {
         this.itemSet = true;
       });
     }
+    this.alertList = [
+      new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit","fridge","anne")
+    ]
+    this.makeAlerts();
 
+  }
+
+  public makeAlerts() {
+    this.alertList = [];
+    this.dayList = [];
+    let today = new Date();
+    this.content.forEach(element => {
+      let month = element.expirationDate.slice(0,2);
+      let day = element.expirationDate.slice(3, 2);
+      let year = element.expirationDate.slice(5, 4);
+      let exDate = new Date(year+'-'+month+'-'+day+'T00:00:00');
+      let msBtwn = exDate.getTime() - today.getTime();
+      let daysBtwn = Math.floor(msBtwn / (1000*60*60*24));
+      if (daysBtwn < 5) {
+        this.alertList.push(element);
+        this.dayList.push(daysBtwn);
+      }
+    });
   }
 
   get ID(): number {
