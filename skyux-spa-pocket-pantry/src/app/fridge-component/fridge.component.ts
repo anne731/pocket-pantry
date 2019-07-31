@@ -47,10 +47,10 @@ export class FridgeComponent implements OnInit {
         data.forEach( (item: any) => {
           this.content.push({
             name: item.name,
-            datePurchased: item.datePurchased,
-            expiration: item.expiration,
+            purchaseDate: item.purchaseDate,
+            expirationDate: item.expirationDate,
             foodType: item.foodType,
-            servingsLeft: item.servingsLeft,
+            servings: item.servings,
             foodLocation: this.pantryType,
             user: this.context.user.userName
           });
@@ -63,10 +63,10 @@ export class FridgeComponent implements OnInit {
         data.forEach( (item: any) => {
           this.content.push({
             name: item.name,
-            datePurchased: item.datePurchased,
-            expiration: item.expiration,
+            purchaseDate: item.purchaseDate,
+            expirationDate: item.expirationDate,
             foodType: item.foodType,
-            servingsLeft: item.servingsLeft,
+            servings: item.servings,
             foodLocation: this.pantryType,
             user: this.context.user.userName
           });
@@ -118,10 +118,10 @@ export class FridgeComponent implements OnInit {
     modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
       let temp = {
         name: result.data[0],
-        datePurchased: result.data[1],
-        expiration: result.data[2],
+        purchaseDate: result.data[1],
+        expirationDate: result.data[2],
         foodType: result.data[3],
-        servingsLeft: result.data[4],
+        servings: result.data[4],
         foodLocation: this.pantryType,
         user: 'anne'
       };

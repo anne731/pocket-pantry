@@ -27,7 +27,7 @@ export class PocketPantryService {
   }
 
   public addFood(food: FoodItem): Observable<any> {
-    return this.http.post<any>(`${this.brokerUrl}api/pantry/food/${food.name}`, food, skyAuthHttpOptions(REQUEST_OPTIONS));
+    return this.http.post<any>(`${this.brokerUrl}api/pantry/food/`, food, skyAuthHttpOptions(REQUEST_OPTIONS));
   }
 
   public deleteFood(food: string): Observable<any> {
