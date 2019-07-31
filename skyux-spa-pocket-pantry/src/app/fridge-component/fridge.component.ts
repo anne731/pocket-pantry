@@ -48,14 +48,11 @@ export class FridgeComponent implements OnInit {
     } else if (this.pantryType === 'pantry') {
       this.items = Observable.of(this.pantry);
     }
-<<<<<<< HEAD
-=======
     this.alertList = [
       new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit","fridge","anne")
     ]
     this.makeAlerts();
 
->>>>>>> d1c420772de8532f744291a06c9be3e5fd47e002
   }
 
   public makeAlerts() {
