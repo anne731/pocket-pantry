@@ -1,10 +1,6 @@
 import {
-  Component, ChangeDetectorRef
+  Component, Input
 } from '@angular/core';
-
-import {
-  Observable
-} from 'rxjs/Observable';
 
 import {
   BehaviorSubject
@@ -18,7 +14,7 @@ import {
 } from '@skyux/modals';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { FoodItem } from '../models/FoodItem';
-import { ListToolbarShowMultiselectToolbarAction } from '@skyux/list-builder/modules/list/state';
+//import { ListToolbarShowMultiselectToolbarAction } from '@skyux/list-builder/modules/list/state';
 import { PocketPantryService } from '../shared/services/pocketPantryService';
 import { UserContext } from '../user-context';
 
@@ -29,12 +25,13 @@ import { UserContext } from '../user-context';
 })
 
 export class FridgeComponent {
+  @Input() public pantryType: string
   constructor(
     private modal: SkyModalService,
-    private changeDetector: ChangeDetectorRef,
     private pantrySvc: PocketPantryService,
     private context: UserContext
-  ) { }
+  ) {
+   }
   private idNum: number = 1;
   public valueA: string;
   public eventMessage?: string;
@@ -50,10 +47,15 @@ export class FridgeComponent {
     // { id: '6', column1: '', column2: '', column3: '', column4: "" },
     // { id: '7', column1: '', column2: '', column3: '', column4: "" }
   ]);
-  
+
 
   public ngOnInit() {
-    this.pantrySvc.getPantry(this.context.user.userName);
+    this.pantrySvc.getPantry(this.context.user);
+    if (this.pantryType == "fridge") {
+      //get and display fridge data
+    } else if (this.pantryType == "pantry") {
+      //get and display pantry data
+    }
   }
 
   get ID(): number {
@@ -101,8 +103,8 @@ export class FridgeComponent {
     const options: any = {
       ariaDescribedBy: 'docs-modal-content'
     };
-    
-  
+
+
     this.eventMessage = "help me";
 
     const modalInstance = this.modal.open(AddItemComponent, options.helpKey);
@@ -117,12 +119,7 @@ export class FridgeComponent {
     });
 
     modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
-      // if (result.reason === 'save') {
-      //   if (result.data.) {
-      //     requiredFieldsArray = result.data.requiredFields.split(',').map(function(e: string) {
-      //       return e.trim();
-      //     });
-      //   }
+
       if (result.reason === 'save') {
         let items = {
           column1: result.data[0],
@@ -131,15 +128,9 @@ export class FridgeComponent {
           column4: result.data[3],
           column5: result.data[4]
 
+        }
+      }
+  });
+}
 
-      //   }
-      //   console.log(result.data);
-      // }
-      //   console.log(result.reason);
-      //   console.log(result);
-      //   // this.items.subscribe({id: this.ID, column1:  }) ;
-      //   // this.ID++;
-      // // }
-    });
-  }
 }
