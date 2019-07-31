@@ -45,31 +45,29 @@ export class FridgeComponent implements OnInit {
     } else if (this.pantryType === 'pantry') {
       this.items = Observable.of(this.pantry);
     }
-    this.fridge = [
-      new FoodItem("apple", "08.02.2019","07.21.2019",3,"Fruit")
-    ] //delete later
     this.makeAlerts();
 
   }
 
   public makeAlerts() {
+    console.log(this.fridge);
     this.alertList = [];
     this.dayList = [];
-    let today = new Date();
+    //let today = new Date();
     let content = this.pantryType == "fridge" ? this.fridge : this.pantry;
-    content = this.fridge; //delete later
     content.forEach(element => {
+      
       let month = element.expirationDate.slice(0,2);
-      let day = element.expirationDate.slice(3, 2);
-      let year = element.expirationDate.slice(5, 4);
-      let exDate = new Date(year+'-'+month+'-'+day+'T00:00:00');
-      let msBtwn = exDate.getTime() - today.getTime();
-      let daysBtwn = Math.floor(msBtwn / (1000*60*60*24));
+      let day = element.expirationDate.slice(3, 5);
+      let year = element.expirationDate.slice(6, 10);
+      let ex = new Date(+year, +month-1, +day);
+      let daysBtwn = Math.ceil((ex.valueOf() - new Date().valueOf()) / (1000*60*60*24));
       if (daysBtwn < 5) {
         this.alertList.push(element);
         this.dayList.push(daysBtwn);
       }
     });
+    console.log(this.alertList[0].name);
   }
 
   get ID(): number {
