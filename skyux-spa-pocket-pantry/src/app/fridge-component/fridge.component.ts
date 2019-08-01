@@ -96,6 +96,7 @@ export class FridgeComponent implements OnInit {
           }
         });
         this.items.next(temp);
+        this.fridge = temp;
       } else if (this.pantryType === 'pantry') {
         let temp: FoodItem[] = [];
         this.pantry.forEach( (item) => {
@@ -104,9 +105,9 @@ export class FridgeComponent implements OnInit {
           }
         });
         this.items.next(temp);
+        this.pantry = temp;
       }
       this.makeAlerts();
-      this.changeDetector.checkNoChanges();
 
     
   }
@@ -138,7 +139,7 @@ export class FridgeComponent implements OnInit {
         }
       }
       this.makeAlerts();
-      this.changeDetector.detectChanges();
+
   });
 }
 
